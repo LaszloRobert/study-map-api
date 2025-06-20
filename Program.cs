@@ -33,6 +33,9 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Register global exception handling middleware
+app.UseMiddleware<StudyMapAPI.GlobalExceptionMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

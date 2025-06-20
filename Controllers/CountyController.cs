@@ -26,5 +26,12 @@ namespace StudyMapAPI.Controllers
             await _countyService.AddAsync(userCountyDto, remainedCoins);
             return Ok();
         }
+
+        [HttpPost("saveUserCoins")]
+        public async Task<IActionResult> SaveUserCoins([FromBody] SaveUserCoinsDTO dto)
+        {
+            await _countyService.SaveUserCoinsAsync(dto.UserId, dto.Coins);
+            return Ok();
+        }
     }
 }
