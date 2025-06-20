@@ -24,6 +24,7 @@ namespace StudyMapAPI.Services
             {
                 user = new User
                 {
+                    Coins = 30, // initialCoins for new users
                     GoogleId = payload.Subject,
                     Name = payload.Name,
                     Email = payload.Email,

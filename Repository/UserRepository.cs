@@ -28,6 +28,16 @@ namespace StudyMapAPI.Repository
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task UpdateUserCoinsAsync(int userId, int coins)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                user.Coins = coins;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
     
