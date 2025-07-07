@@ -51,6 +51,22 @@ app.UseAuthorization();
 // Use CORS
 app.UseCors("AllowReactApp");
 
+// Auto-run migrations on startup
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var context = scope.ServiceProvider.GetRequiredService<StudyMapDbContext>();
+        context.Database.Migrate();
+        Console.WriteLine("Database migrations applied successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Migration failed: {ex.Message}");
+        throw;
+    }
+}
+
 app.MapControllers();
 
 app.Run();
